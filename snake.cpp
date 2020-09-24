@@ -1,10 +1,9 @@
-//Editing Developers: Carter Womack, Edgar Bacallo, and Zachary Scholefield
-//Date: Fall 2020
-//original program: snake.cpp
-//original author:  Gordon Griesel
-//Re-purpose: Modify to make a game resembling Tron
+//
+//program: snake.cpp
+//author:  Gordon Griesel
+//purpose: Simple snake game
 //cs335 Spring 2014
-//cmps3350 Fall 2020
+//cmps3350 Spring 2018
 //
 //
 //notes:
@@ -62,7 +61,7 @@
 #define DIRECTION_UP    2
 #define DIRECTION_RIGHT 3
 //
-#define MAX_GRID 80
+#define MAX_GRID 40
 typedef struct t_grid {
 	int status;
 	float color[4];
@@ -157,7 +156,7 @@ struct Global {
 	int xres, yres;
 	Grid grid[MAX_GRID][MAX_GRID];
 	Snake snake;
-	Rat rat;
+//	Rat rat;
 	int gridDim;
 	int boardDim;
 	int gameover;
@@ -170,9 +169,9 @@ struct Global {
 	ALuint alBufferDrip, alBufferTick;
 	ALuint alSourceDrip, alSourceTick;
 	Global() {
-		xres = 800;
-		yres = 600;
-		gridDim = 40;
+		xres = 1280;
+		yres = 980;
+		gridDim = 80;
 		gameover = 0;
 		winner = 0;
 		nbuttons = 0;
@@ -475,20 +474,20 @@ void initSnake()
 	g.snake.direction = DIRECTION_RIGHT;
 	//snake.timer = glfwGetTime() + 0.5;
 }
-
+/*
 void initRat()
 {
 	g.rat.status = 1;
 	g.rat.pos[0] = 25;
 	g.rat.pos[1] = 2;
 }
-
+*/
 void init()
 {
 	g.boardDim = g.gridDim * 10;
 	//
 	initSnake();
-	initRat();
+//	initRat();
 	//
 	//initialize buttons...
 	g.nbuttons=0;
@@ -544,7 +543,7 @@ void init()
 void resetGame()
 {
 	initSnake();
-	initRat();
+//	initRat();
 	g.gameover  = 0;
 	g.winner    = 0;
 }
@@ -657,7 +656,7 @@ void getGridCenter(const int i, const int j, int cent[2])
 	//quad upper-left corner
 	int quad[2];
 	//bq is the width of one grid section
-	bq = (g.boardDim / g.gridDim);
+	//bq = (g.boardDim / g.gridDim);
 	//-------------------------------------
 	//because y dimension is bottom-to-top in OpenGL.
 	int i1 = g.gridDim - i - 1;
@@ -704,6 +703,7 @@ void physics(void)
 	//1=left
 	//2=up
 	//3=right
+	//set to 2
 	switch (g.snake.direction) {
 		case DIRECTION_DOWN:  g.snake.pos[0][1] += 1; break;
 		case DIRECTION_LEFT:  g.snake.pos[0][0] -= 1; break;
@@ -741,20 +741,21 @@ void physics(void)
 		newpos[1] = oldpos[1];
 	}
 	//did the snake eat the rat???
-	if (headpos[0] == g.rat.pos[0] && headpos[1] == g.rat.pos[1]) {
+//	if (headpos[0] == g.rat.pos[0] && headpos[1] == g.rat.pos[1]) {
 		//yes, increase length of snake.
-		playSound(g.alSourceTick);
+//		playSound(g.alSourceTick);
 		//put new segment at end of snake.
-		Log("snake ate rat. snake.length: %i   dir: %i\n",
-		                                g.snake.length,g.snake.direction);
-		int addlength = rand() % 4 + 4;
+//		Log("snake ate rat. snake.length: %i   dir: %i\n",
+//		                                g.snake.length,g.snake.direction);
+		int addlength = 2;
 		for (i=0; i<addlength; i++) {
-			g.snake.pos[g.snake.length][0] = g.snake.pos[g.snake.length-1][0];
-			g.snake.pos[g.snake.length][1] = g.snake.pos[g.snake.length-1][1];
+			g.snake.pos[g.snake.length][0] = g.snake.pos[g.snake.length-1][1];
+			g.snake.pos[g.snake.length][1] = g.snake.pos[g.snake.length-1][2];
 			g.snake.length++;
+			
 		}
 		//new position for rat...
-		int collision=0;
+/*		int collision=0;
 		int ntries=0;
 		while (1) {
 			g.rat.pos[0] = rand() % g.gridDim;
@@ -771,8 +772,9 @@ void physics(void)
 			if (++ntries > 1000000) break;
 		}
 		Log("new rat: %i %i\n",g.rat.pos[0],g.rat.pos[1]);
+*/
 		return;
-	}
+	
 }
 
 void render(void)
@@ -917,7 +919,7 @@ void render(void)
 	//
 	//
 	//draw rat...
-	getGridCenter(g.rat.pos[1],g.rat.pos[0],cent);
+/*	getGridCenter(g.rat.pos[1],g.rat.pos[0],cent);
 	glColor3f(0.1, 0.1f, 0.0f);
 	glBegin(GL_QUADS);
 	glVertex2i(cent[0]-4, cent[1]-3);
@@ -931,6 +933,7 @@ void render(void)
 	r.bot    = g.yres-100;
 	r.center = 1;
 	ggprint16(&r, 16, 0x00ffffff, "Snake");
+*/
 }
 
 
