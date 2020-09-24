@@ -1,9 +1,10 @@
-//
-//program: snake.cpp
-//author:  Gordon Griesel
-//purpose: Simple snake game
+//Editing Developers: Carter Womack, Edgar Bacallo, and Zachary Scholefield
+//Date: Fall 2020
+//original program: snake.cpp
+//original author:  Gordon Griesel
+//Re-purpose: Modify to make a game resembling Tron
 //cs335 Spring 2014
-//cmps3350 Spring 2018
+//cmps3350 Fall 2020
 //
 //
 //notes:
