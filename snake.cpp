@@ -262,6 +262,8 @@ public:
 	}
 } x11;
 
+//Credits Window Prototype added by Carter
+void Credits(void);
 //function prototypes
 void initOpengl(void);
 int checkMouse(XEvent *e);
@@ -349,6 +351,13 @@ int main(int argc, char *argv[])
 	logClose();
 	return 0;
 }
+
+//Credits Function added by Carter
+void Credits() {
+    glViewport(0, 0, g.xres, g.yres);
+}
+
+
 
 void initSound()
 {
@@ -492,6 +501,7 @@ void init()
 	//initialize buttons...
 	g.nbuttons=0;
 	//size and position
+	//Reset Button
 	g.button[g.nbuttons].r.width = 140;
 	g.button[g.nbuttons].r.height = 60;
 	g.button[g.nbuttons].r.left = 20;
@@ -515,6 +525,7 @@ void init()
 	g.button[g.nbuttons].dcolor[2] = g.button[g.nbuttons].color[2] * 0.5f;
 	g.button[g.nbuttons].text_color = 0x00ffffff;
 	g.nbuttons++;
+	//Quit Button
 	g.button[g.nbuttons].r.width = 140;
 	g.button[g.nbuttons].r.height = 60;
 	g.button[g.nbuttons].r.left = 20;
@@ -528,6 +539,30 @@ void init()
 	g.button[g.nbuttons].r.centery = (g.button[g.nbuttons].r.bot +
 	   g.button[g.nbuttons].r.top) / 2;
 	strcpy(g.button[g.nbuttons].text, "Quit");
+	g.button[g.nbuttons].down = 0;
+	g.button[g.nbuttons].click = 0;
+	g.button[g.nbuttons].color[0] = 0.3f;
+	g.button[g.nbuttons].color[1] = 0.3f;
+	g.button[g.nbuttons].color[2] = 0.6f;
+	g.button[g.nbuttons].dcolor[0] = g.button[g.nbuttons].color[0] * 0.5f;
+	g.button[g.nbuttons].dcolor[1] = g.button[g.nbuttons].color[1] * 0.5f;
+	g.button[g.nbuttons].dcolor[2] = g.button[g.nbuttons].color[2] * 0.5f;
+	g.button[g.nbuttons].text_color = 0x00ffffff;
+	g.nbuttons++;
+	//Credits Button added by Carter
+	g.button[g.nbuttons].r.width = 140;
+	g.button[g.nbuttons].r.height = 60;
+	g.button[g.nbuttons].r.left = 20;
+	g.button[g.nbuttons].r.bot = 80;
+	g.button[g.nbuttons].r.right =
+	   g.button[g.nbuttons].r.left + g.button[g.nbuttons].r.width;
+	g.button[g.nbuttons].r.top = g.button[g.nbuttons].r.bot +
+	   g.button[g.nbuttons].r.height;
+	g.button[g.nbuttons].r.centerx = (g.button[g.nbuttons].r.left +
+	   g.button[g.nbuttons].r.right) / 2;
+	g.button[g.nbuttons].r.centery = (g.button[g.nbuttons].r.bot +
+	   g.button[g.nbuttons].r.top) / 2;
+	strcpy(g.button[g.nbuttons].text, "Credits");
 	g.button[g.nbuttons].down = 0;
 	g.button[g.nbuttons].click = 0;
 	g.button[g.nbuttons].color[0] = 0.3f;
@@ -637,6 +672,11 @@ int checkMouse(XEvent *e)
 						case 1:
 							printf("Quit was clicked!\n");
 							return 1;
+						//Credits button by Carter
+						case 2:
+							printf("This is a Credits test\n");
+							Credits();
+							break;
 					}
 				}
 			}
