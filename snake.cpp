@@ -926,7 +926,7 @@ void render(void)
 		}
 	}
 	//draw the main game board in middle of screen
-	glColor3f(0.6f, 0.5f, 0.2f);
+	glColor3f(0.1f, 0.1f, 0.1f);
 	glBegin(GL_QUADS);
 		glVertex2i(s0-b2, s1-b2);
 		glVertex2i(s0-b2, s1+b2);
@@ -939,7 +939,7 @@ void render(void)
 	int x1 = s0+b2;
 	int y0 = s1-b2;
 	int y1 = s1+b2;
-	glColor3f(0.1f, 0.1f, 0.1f);
+	glColor3f(0.5f, 0.5f, 0.5f);
 	glBegin(GL_LINES);
 	for (i=1; i<g.gridDim; i++) {
 		y0 += 10;
@@ -994,7 +994,7 @@ void render(void)
 	glEnd();
 	#else //COLORFUL_SNAKE
 	glColor3f(0.1f, 0.8f, 0.1f);
-	glBegin(GL_QUADS);
+	glBegin(GL_QIADS);
 	for (i=0; i<g.snake.length; i++) {
 		getGridCenter(g.snake.pos[i][1],g.snake.pos[i][0],cent);	
     	  //  glVertex3f( -(0.4 / 6.0 * 0.5), 0.02, 0.05);
