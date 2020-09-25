@@ -935,6 +935,7 @@ void render(void)
 	glEnd();
 	//
 	//grid lines...
+    	/*
 	int x0 = s0-b2;
 	int x1 = s0+b2;
 	int y0 = s1-b2;
@@ -955,6 +956,7 @@ void render(void)
 		glVertex2i(x0,y1);
 	}
 	glEnd();
+	*/
 	//
 	#define COLORFUL_SNAKE
 	//
@@ -969,7 +971,7 @@ void render(void)
 	rgb[2] = -0.45;
 	glColor3fv(c);
 	//
-	glBegin(GL_QUADS);
+	glBegin(GL_QUAD_STRIP);
 	
 	for (i=0; i<g.snake.length; i++) {
 					   //1
@@ -994,14 +996,14 @@ void render(void)
 	glEnd();
 	#else //COLORFUL_SNAKE
 	glColor3f(0.1f, 0.8f, 0.1f);
-	glBegin(GL_QIADS);
+	glBegin(GL_QUAD_STRIP);
 	for (i=0; i<g.snake.length; i++) {
 		getGridCenter(g.snake.pos[i][1],g.snake.pos[i][0],cent);	
     	  //  glVertex3f( -(0.4 / 6.0 * 0.5), 0.02, 0.05);
 	  //  glVertex3f( (0.4 / 6.0 * 0.5), 0.02, 0.05);
 	 //   glVertex3f( (0.4 / 6.0 * 0.5), 0.07, 0.05);
 	//    glVertex3f( -(0.4 /6.0 * 0.5), 0.07, 0.05);
-		glVertex2i(cent[0]-4, cent[1]-3);
+    		glVertex2i(cent[0]-4, cent[1]-3);
 		glVertex2i(cent[0]-4, cent[1]+4);
 		glVertex2i(cent[0]+3, cent[1]+4);
 		glVertex2i(cent[0]+3, cent[1]-3);
@@ -1029,7 +1031,4 @@ void render(void)
 */
 	
 }
-
-
-
 
