@@ -743,7 +743,7 @@ void physics(void)
 	}
 	struct timespec tt;
 	clock_gettime(CLOCK_REALTIME, &tt);
-	double timeSpan = timeDiff(&snakeTime, &tt);
+	//double timeSpan = timeDiff(&snakeTime, &tt);
 	//if (timeSpan < g.snake.delay)
 	//	return;
 	timeCopy(&snakeTime, &tt);
@@ -805,7 +805,7 @@ void physics(void)
 		//put new segment at end of snake.
 //		Log("snake ate rat. snake.length: %i   dir: %i\n",
 //		                                g.snake.length,g.snake.direction);
-		int addlength = 2;
+		int addlength = 1;
 		for (i=0; i<addlength; i++) {
 			g.snake.pos[g.snake.length][0] = g.snake.pos[g.snake.length-1][1];
 			g.snake.pos[g.snake.length][1] = g.snake.pos[g.snake.length-1][2];
@@ -842,10 +842,12 @@ void render(void)
 	extern void zach(int, int);
 	if(g.credits){
 		glClear(GL_COLOR_BUFFER_BIT);
+		/*
 		Rect cred;
 		cred.bot = g.yres * .95f;
 		cred.left = g.xres/2;
 		cred.center = 0;
+		*/
 		edgar((g.xres/2), (g.yres/2));
 		carter((g.xres/2), (g.yres/2));
 		zach((g.xres/2), (g.yres/2));
@@ -958,12 +960,17 @@ void render(void)
 	#ifdef COLORFUL_SNAKE
 	float c[3]={1.0f,1.0,0.5};
 	float rgb[3];
-	rgb[0] = -0.9 / (float)g.snake.length;
-	rgb[2] = -0.45 / (float)g.snake.length;
+	//this create the line to be multi colored - Edgar
+	//rgb[0] = -0.9 / (float)g.snake.length;
+	//rgb[2] = -0.45 / (float)g.snake.length;
+	rgb[0] = -0.9;
+	rgb[2] = -0.45;
 	glColor3fv(c);
 	//
 	glBegin(GL_QUADS);
+	
 	for (i=0; i<g.snake.length; i++) {
+					   //1
 		getGridCenter(g.snake.pos[i][1],g.snake.pos[i][0],cent);
 		glVertex2i(cent[0]-4, cent[1]-3);
 		glVertex2i(cent[0]-4, cent[1]+4);
@@ -973,12 +980,25 @@ void render(void)
 		c[2] +=	rgb[2];
 		glColor3fv(c);
 	}
+	/*
+	for (i=0; i<g.snake.length; i++){
+	    glColor3f(c[0], c[1], c[2]);
+	    getGridCenter(g.snake.pos[i][1],g.snake.pos[i][0],cent);
+	    glVertex3f( -(0.4 / 6.0 * 0.5), 0.02, 0.05);
+	    glVertex3f( (0.4 / 6.0 * 0.5), 0.02, 0.05);
+	    glVertex3f( (0.4 / 6.0 * 0.5), 0.07, 0.05);
+	    glVertex3f( -(0.4 /6.0 * 0.5), 0.07, 0.05);
+	}*/
 	glEnd();
 	#else //COLORFUL_SNAKE
 	glColor3f(0.1f, 0.8f, 0.1f);
 	glBegin(GL_QUADS);
 	for (i=0; i<g.snake.length; i++) {
-		getGridCenter(g.snake.pos[i][1],g.snake.pos[i][0],cent);
+		getGridCenter(g.snake.pos[i][1],g.snake.pos[i][0],cent);	
+    	  //  glVertex3f( -(0.4 / 6.0 * 0.5), 0.02, 0.05);
+	  //  glVertex3f( (0.4 / 6.0 * 0.5), 0.02, 0.05);
+	 //   glVertex3f( (0.4 / 6.0 * 0.5), 0.07, 0.05);
+	//    glVertex3f( -(0.4 /6.0 * 0.5), 0.07, 0.05);
 		glVertex2i(cent[0]-4, cent[1]-3);
 		glVertex2i(cent[0]-4, cent[1]+4);
 		glVertex2i(cent[0]+3, cent[1]+4);
