@@ -161,6 +161,7 @@ struct Global {
 	int boardDim;
 	int gameover;
 	int winner;
+	bool credits;
 	Image *marbleImage;
 	GLuint marbleTexture;
 	Button button[MAXBUTTONS];
@@ -176,6 +177,7 @@ struct Global {
 		winner = 0;
 		nbuttons = 0;
 		marbleImage=NULL;
+		credits=false;
 	}
 } g;
 
@@ -608,6 +610,9 @@ int checkKeys(XEvent *e)
 			if (g.snake.delay < 0.001)
 				g.snake.delay = 0.001;
 			break;
+		case XK_c:
+			g.credits = true;
+			break;
 		case XK_minus:
 			g.snake.delay *= (1.0 / 0.9);
 			break;
@@ -675,7 +680,7 @@ int checkMouse(XEvent *e)
 						//Credits button by Carter
 						case 2:
 							printf("This is a Credits test\n");
-							Credits();
+							g.credits=true;
 							break;
 					}
 				}
@@ -696,7 +701,7 @@ void getGridCenter(const int i, const int j, int cent[2])
 	//quad upper-left corner
 	int quad[2];
 	//bq is the width of one grid section
-	//bq = (g.boardDim / g.gridDim);
+	bq = (g.boardDim / g.gridDim);
 	//-------------------------------------
 	//because y dimension is bottom-to-top in OpenGL.
 	int i1 = g.gridDim - i - 1;
@@ -819,6 +824,19 @@ void physics(void)
 
 void render(void)
 {
+	extern void edgar(int, int);
+	extern void carter(int, int);
+	extern void zach(int, int);
+	if(g.credits){
+		glClear(GL_COLOR_BUFFER_BIT);
+		Rect cred;
+		cred.bot = g.yres * .95f;
+		cred.left = g.xres/2;
+		cred.center = 0;
+		edgar((g.xres/2), (g.yres/2));
+		carter((g.xres/2), (g.yres/2));
+		zach((g.xres/2), (g.yres/2));
+} else {  
 	int i,j;
 	Rect r;
 	//--------------------------------------------------------
@@ -974,6 +992,7 @@ void render(void)
 	r.center = 1;
 	ggprint16(&r, 16, 0x00ffffff, "Snake");
 */
+	}
 }
 
 
