@@ -618,10 +618,11 @@ int checkKeys(XEvent *e)
 		//		g.snake.delay = 0.001;
 			break;
 		case XK_c:
-			if(g.credits){
+			if (g.credits) {
 			    g.credits = false;
 			    break;
-			}else{
+			}
+			else {
 			    g.credits = true;
 			    break;
 			}
@@ -851,8 +852,9 @@ void render(void)
 		edgar((g.xres/2), (g.yres/2));
 		carter((g.xres/2), (g.yres/2));
 		zach((g.xres/2), (g.yres/2));
-} else {  
-	int i,j;
+		return;
+	} 
+  	int i,j;
 	Rect r;
 	//--------------------------------------------------------
 	//This code is repeated several times in this program, so
@@ -1025,7 +1027,7 @@ void render(void)
 	r.center = 1;
 	ggprint16(&r, 16, 0x00ffffff, "Snake");
 */
-	}
+	
 }
 
 
