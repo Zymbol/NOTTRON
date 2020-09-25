@@ -1,3 +1,6 @@
+#It's a bit messy but should work - Edgar
+#Changes made Edgar - 9/24 6:53pm 
+
 CFLAGS = -I ./include
 all: snake
 
