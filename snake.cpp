@@ -32,6 +32,12 @@
 // . Additional features
 //
 //
+/*
+    removed delays thus increasing speed
+    quit button now works
+    added c button logic for credits
+				- Edgar
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -299,6 +305,7 @@ void timeCopy(struct timespec *dest, struct timespec *source) {
 }
 //-----------------------------------------------------------------------------
 
+//int done = 0;
 
 int main(int argc, char *argv[])
 {
@@ -476,7 +483,7 @@ void initSnake()
 {
 	int i;
 	g.snake.status = 1;
-	g.snake.delay = .15;
+	//g.snake.delay = .15;
 	g.snake.length = rand() % 4 + 3;
 	for (i=0; i<g.snake.length; i++) {
 		g.snake.pos[i][0] = 2;
@@ -606,15 +613,20 @@ int checkKeys(XEvent *e)
 			resetGame();
 			break;
 		case XK_equal:
-			g.snake.delay *= 0.9;
-			if (g.snake.delay < 0.001)
-				g.snake.delay = 0.001;
+		//	g.snake.delay *= 0.9;
+		//	if (g.snake.delay < 0.001)
+		//		g.snake.delay = 0.001;
 			break;
 		case XK_c:
-			g.credits = true;
-			break;
+			if(g.credits){
+			    g.credits = false;
+			    break;
+			}else{
+			    g.credits = true;
+			    break;
+			}
 		case XK_minus:
-			g.snake.delay *= (1.0 / 0.9);
+		//	g.snake.delay *= (1.0 / 0.9);
 			break;
 		case XK_Left:
 			g.snake.direction = DIRECTION_LEFT;
@@ -675,8 +687,9 @@ int checkMouse(XEvent *e)
 							resetGame();
 							break;
 						case 1:
-							printf("Quit was clicked!\n");
-							return 1;
+							printf("Quit was clicked!\n");						
+							exit(0);
+    
 						//Credits button by Carter
 						case 2:
 							printf("This is a Credits test\n");
@@ -731,8 +744,8 @@ void physics(void)
 	struct timespec tt;
 	clock_gettime(CLOCK_REALTIME, &tt);
 	double timeSpan = timeDiff(&snakeTime, &tt);
-	if (timeSpan < g.snake.delay)
-		return;
+	//if (timeSpan < g.snake.delay)
+	//	return;
 	timeCopy(&snakeTime, &tt);
 	//
 	playSound(g.alSourceDrip);
