@@ -15,8 +15,12 @@
 #include "log.h"
 #include "fonts.h"
 
-int main() {
+void carter(int x, int y) {
 
+	Rect r;
+	r.left = x + 90;
+	r.bot = y + 80;
+	r.center = 0;
+	ggprint16(&r, 16, 0x00ffffff, "Carter Womack");
 
-    return 0;
 }
