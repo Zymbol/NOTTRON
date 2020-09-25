@@ -155,7 +155,7 @@ public:
 			unlink(ppmname);
 	}
 };
-Image img[1] = {"./images/marble.gif" };
+Image img[1] = {"./images/nottronBackground.gif" };
 
 
 struct Global {
