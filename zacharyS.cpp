@@ -1,3 +1,4 @@
+//Zachary Scholefield
 #include <iostream>
 #include <GL/glx.h>
 #include <math.h>
