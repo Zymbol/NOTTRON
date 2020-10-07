@@ -483,7 +483,7 @@ void initSnake()
 {
 	int i;
 	g.snake.status = 1;
-	//g.snake.delay = .15;
+	g.snake.delay = .055;
 	g.snake.length = rand() % 4 + 3;
 	for (i=0; i<g.snake.length; i++) {
 		g.snake.pos[i][0] = 2;
@@ -744,9 +744,12 @@ void physics(void)
 	}
 	struct timespec tt;
 	clock_gettime(CLOCK_REALTIME, &tt);
-	//double timeSpan = timeDiff(&snakeTime, &tt);
-	//if (timeSpan < g.snake.delay)
-	//	return;
+	// timespan allows delay which delay changes speed
+	// g.snake.delay is handler for delay decrease to increase speed
+	// and increase to decrease speed.  - Edgar
+	double timeSpan = timeDiff(&snakeTime, &tt);
+	if (timeSpan < g.snake.delay)
+		return;
 	timeCopy(&snakeTime, &tt);
 	//
 	playSound(g.alSourceDrip);
