@@ -1,7 +1,7 @@
 //Zachary Scholefield
-#include <iostream>
-#include <GL/glx.h>
-#include <math.h>
+// Fall 2020
+// Removed all unused include statements.
+
 #include "fonts.h"
 
 using namespace std;
