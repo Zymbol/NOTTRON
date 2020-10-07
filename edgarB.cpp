@@ -1,12 +1,9 @@
 //Program : edgarB.cpp
 //Author: Edgar Bacallo
 //
-#include <X11/Xlib.h>
-#include <X11/keysym.h>
-#include <GL/glx.h>
-#include <math.h>
 #include "fonts.h"
-
+// removed #include <X11/Xlib.h> / <X11/keysym.h> / <GL/glx.h> / <math.h>
+//                                   - Edgar
 void edgar(int x, int y){
 
 	//TODO said we needed to generate name on GL using render

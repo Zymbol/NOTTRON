@@ -854,7 +854,8 @@ void render(void)
 		zach((g.xres/2), (g.yres/2));
 		return;
 	} 
-  	int i,j;
+  	// int i,j;
+	int i = 0;
 	Rect r;
 	//--------------------------------------------------------
 	//This code is repeated several times in this program, so
