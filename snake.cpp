@@ -387,8 +387,8 @@ void initSound()
 	alListenerf(AL_GAIN, 1.0f);
 	//
 	//Buffer holds the sound information.
-	g.alBufferDrip = alutCreateBufferFromFile("./sounds/drip.wav");
-	g.alBufferTick = alutCreateBufferFromFile("./sounds/tick.wav");
+	g.alBufferDrip = alutCreateBufferFromFile("./sounds/explosion.wav");
+	g.alBufferTick = alutCreateBufferFromFile("./sounds/engine.wav");
 	//
 	//Source refers to the sound.
 	//Generate a source, and store it in a buffer.
