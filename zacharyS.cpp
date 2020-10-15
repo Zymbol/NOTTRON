@@ -2,6 +2,10 @@
 // Fall 2020
 // Removed all unused include statements.
 
+
+//Did research the entire time 10/15/2020
+
+
 #include "fonts.h"
 
 using namespace std;
