@@ -455,12 +455,12 @@ void initOpengl(void)
 	glBindTexture(GL_TEXTURE_2D, 0);
 	//
 	glEnable(GL_TEXTURE_2D);
-	//marble_texture = loadBMP("marble.bmp");
+	//marble_texture = loadBMP("nottronBackground.bmp");
 	glBindTexture(GL_TEXTURE_2D, 0);
 	//
 	//load the image file into a ppm structure.
 	//
-	//g.marbleImage = ppm6GetImage("./images/marble.ppm");
+	//g.marbleImage = ppm6GetImage("./images/nottronBackground.ppm");
 	g.marbleImage = &img[0];
 	//
 	//create opengl texture elements
@@ -477,11 +477,8 @@ void initSnake()
 {
 	int i;
 	g.snake.status = 1;
-<<<<<<< HEAD
 	g.snake.delay = .055;
-=======
 	g.snake.delay = .15;
->>>>>>> fc97d4af64c1c6d99bbf205af20761310fbd0344
 	g.snake.length = rand() % 4 + 3;
 	for (i=0; i<g.snake.length; i++) {
 		g.snake.pos[i][0] = 2;
