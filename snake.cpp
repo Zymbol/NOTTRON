@@ -361,12 +361,6 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-//Credits Function added by Carter
-void Credits() {
-    glViewport(0, 0, g.xres, g.yres);
-}
-
-
 
 void initSound()
 {
@@ -483,7 +477,7 @@ void initSnake()
 {
 	int i;
 	g.snake.status = 1;
-	//g.snake.delay = .15;
+	g.snake.delay = .15;
 	g.snake.length = rand() % 4 + 3;
 	for (i=0; i<g.snake.length; i++) {
 		g.snake.pos[i][0] = 2;
